@@ -1,6 +1,8 @@
 # JoernTI
 
-Joern Type Inference (JoernTI) is plugin for the Joern code analysis platform to recover unknown types from objects using neural type inference.  
+This is the backend python package for the Type Inference plugin for the Joern code analysis platform (JoernTI).
+This backend provides the interface to query and recover unknown types from objects using neural type inference.  
+
 You can find our main repository, including documentation how to use this type inference backend together with Joern, under https://github.com/joernio/joernti-codetidal5.
 
 ## Getting Started
@@ -8,6 +10,7 @@ You can find our main repository, including documentation how to use this type i
 The following commands should get you up and running:
 
 ```shell
+cd ./joernti
 pip install -r requirements.txt # Install dependencies
 pip install .                   # Install JoernTI
 ```
@@ -15,15 +18,10 @@ pip install .                   # Install JoernTI
 From this point onwards, you can use JoernTI as an executable by calling `joernti` on the command
 line. This executable gives you access to a way to leverage the type inference models from the CLI.
 
-For experimenting with the ML model and the datasets used in `./experiments`, install the dependencies incl. CUDA and 
-PyTorch 2.0 (GPU required):
-```shell
-cd ./experiments
-./install_cuda_pytorch.sh
-```
 
-At this point you'll have the JoernTI system installed **without** model weights. To fetch the desired
-model, see `./data/model_checkpoints`.
+
+Place your model weights (cf. [our CodeTIDAL5 repository](https://github.com/joernio/joernti-codetidal5)) in `./checkpoints` before starting the application.
+
 
 ## Models
 
@@ -49,9 +47,9 @@ or as a continuously running endpoint with
 joernti codetidal5 --run-as-server
 ```
 In that case, connect to the server on port 1337 (default) via a TCP socket and send the raw json-encoded slice. The response will be of the following format:
-`[{"target_identifier": "id", "type": "DataSet[]", "confidence": 0.6373817920684814}]`
-
-You can find scripts and instructions how to generate a training dataset for type inference with a decoder model such as CodeT5 in `./training_dataset`.
+```json
+[{"target_identifier": "id", "type": "DataSet[]", "confidence": 0.6373817920684814}]`
+```
 
 ## Structure
 

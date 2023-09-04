@@ -1,0 +1,261 @@
+{
+  "objectSlices" : {
+    "reworm.tsx::program:anonymous:anonymous3" : [
+      {
+        "targetObj" : {
+          "name" : "listener: Listener",
+          "typeFullName" : "UNKNOWN",
+          "literal" : false
+        },
+        "definedBy" : {
+          "name" : "listener: Listener",
+          "typeFullName" : "UNKNOWN",
+          "literal" : false
+        },
+        "invokedCalls" : [
+        ],
+        "argToCalls" : [
+          [
+            {
+              "receiver" : "listeners",
+              "callName" : "indexOf",
+              "paramTypes" : [
+                "(id: __ecma.String, next: ANY) => void"
+              ],
+              "returnType" : "ANY"
+            },
+            1
+          ]
+        ]
+      }
+    ],
+    "reworm.tsx::program:anonymous:anonymous2" : [
+      {
+        "targetObj" : {
+          "name" : "listener: Listener",
+          "typeFullName" : "UNKNOWN",
+          "literal" : false
+        },
+        "definedBy" : {
+          "name" : "listener: Listener",
+          "typeFullName" : "UNKNOWN",
+          "literal" : false
+        },
+        "invokedCalls" : [
+        ],
+        "argToCalls" : [
+          [
+            {
+              "receiver" : "listeners",
+              "callName" : "push",
+              "paramTypes" : [
+                "(id: __ecma.String, next: ANY) => void"
+              ],
+              "returnType" : "ANY"
+            },
+            1
+          ]
+        ]
+      }
+    ],
+    "reworm.tsx::program:anonymous:anonymous4" : [
+      {
+        "targetObj" : {
+          "name" : "id",
+          "typeFullName" : "UNKNOWN",
+          "literal" : false
+        },
+        "definedBy" : {
+          "name" : "id",
+          "typeFullName" : "UNKNOWN",
+          "literal" : false
+        },
+        "invokedCalls" : [
+        ],
+        "argToCalls" : [
+          [
+            {
+              "receiver" : "this",
+              "callName" : "listener",
+              "paramTypes" : [
+                "__ecma.String",
+                "ANY"
+              ],
+              "returnType" : "ANY"
+            },
+            1
+          ]
+        ]
+      }
+    ],
+    "reworm.tsx::program:createStore" : [
+      {
+        "targetObj" : {
+          "name" : "listeners",
+          "typeFullName" : "UNKNOWN",
+          "literal" : false
+        },
+        "definedBy" : {
+          "name" : "__ecma.Array.factory()",
+          "typeFullName" : "ANY",
+          "literal" : false
+        },
+        "invokedCalls" : [
+          {
+            "receiver" : "listeners",
+            "callName" : "push",
+            "paramTypes" : [
+              "(id: __ecma.String, next: ANY) => void"
+            ],
+            "returnType" : "ANY"
+          },
+          {
+            "receiver" : "listeners",
+            "callName" : "splice",
+            "paramTypes" : [
+              "ANY",
+              "__ecma.Number"
+            ],
+            "returnType" : "ANY"
+          },
+          {
+            "receiver" : "listeners",
+            "callName" : "indexOf",
+            "paramTypes" : [
+              "(id: __ecma.String, next: ANY) => void"
+            ],
+            "returnType" : "ANY"
+          }
+        ],
+        "argToCalls" : [
+        ]
+      }
+    ]
+  },
+  "userDefinedTypes" : [
+    {
+      "name" : "reworm.tsx::program:State",
+      "fields" : [
+        {
+          "name" : "get: (fn: GetFn<T>) => React.ReactNode",
+          "typeFullName" : "ANY",
+          "literal" : false
+        },
+        {
+          "name" : "set: (next: T | PrevState<T>) => void",
+          "typeFullName" : "ANY",
+          "literal" : false
+        },
+        {
+          "name" : "select: <S = any>(\n    selector: (state: T) => S\n  ) => (fn: GetFn<S>) => React.ReactNode",
+          "typeFullName" : "ANY",
+          "literal" : false
+        },
+        {
+          "name" : "subscribe: (fn: SubscribeFn<T>) => () => void",
+          "typeFullName" : "ANY",
+          "literal" : false
+        }
+      ],
+      "procedures" : [
+        {
+          "receiver" : null,
+          "callName" : "<init>",
+          "paramTypes" : [
+            "ANY"
+          ],
+          "returnType" : "ANY"
+        }
+      ]
+    },
+    {
+      "name" : "reworm.tsx::program:Provider",
+      "fields" : [
+        {
+          "name" : "public state = store.getInitial()",
+          "typeFullName" : "ANY",
+          "literal" : false
+        },
+        {
+          "name" : "private handleUpdate = (id: string, next: any) => {\n    this.setState((prevState: any) => ({\n      [id]: typeof next === 'function' ? next(prevState[id]) : next,\n    }))\n  }",
+          "typeFullName" : "ANY",
+          "literal" : false
+        },
+        {
+          "name" : "public componentDidMount(): void {\n    store.subscribe(this.handleUpdate)\n  }",
+          "typeFullName" : "reworm.tsx::program:Provider:componentDidMount",
+          "literal" : false
+        },
+        {
+          "name" : "public componentWillUnmount(): void {\n    store.unsubscribe(this.handleUpdate)\n  }",
+          "typeFullName" : "reworm.tsx::program:Provider:componentWillUnmount",
+          "literal" : false
+        },
+        {
+          "name" : "public shouldComponentUpdate(nextProps: any, nextState: any): boolean {\n    return !equal(this.state, nextState)\n  }",
+          "typeFullName" : "__ecma.Boolean",
+          "literal" : false
+        },
+        {
+          "name" : "public render(): React.ReactNode {\n    return <ctx.Provider value={this.state}>{this.props.children}</ctx.Provider>\n  }",
+          "typeFullName" : "React.ReactNode",
+          "literal" : false
+        }
+      ],
+      "procedures" : [
+        {
+          "receiver" : null,
+          "callName" : "anonymous",
+          "paramTypes" : [
+            "ANY",
+            "__ecma.String",
+            "ANY"
+          ],
+          "returnType" : "void"
+        },
+        {
+          "receiver" : null,
+          "callName" : "<init>",
+          "paramTypes" : [
+            "ANY"
+          ],
+          "returnType" : "ANY"
+        },
+        {
+          "receiver" : null,
+          "callName" : "componentDidMount",
+          "paramTypes" : [
+            "ANY"
+          ],
+          "returnType" : "ANY"
+        },
+        {
+          "receiver" : null,
+          "callName" : "componentWillUnmount",
+          "paramTypes" : [
+            "ANY"
+          ],
+          "returnType" : "ANY"
+        },
+        {
+          "receiver" : null,
+          "callName" : "shouldComponentUpdate",
+          "paramTypes" : [
+            "ANY",
+            "ANY",
+            "ANY"
+          ],
+          "returnType" : "__ecma.Boolean"
+        },
+        {
+          "receiver" : null,
+          "callName" : "render",
+          "paramTypes" : [
+            "ANY"
+          ],
+          "returnType" : "React.ReactNode"
+        }
+      ]
+    }
+  ]
+}

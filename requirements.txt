@@ -1,0 +1,11 @@
+wheel
+setuptools
+twine
+numpy
+nptyping
+pandas
+pytest
+typer
+torch
+onnxruntime
+gdown
