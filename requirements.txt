@@ -7,5 +7,7 @@ pandas
 pytest
 typer
 torch
+transformers
+datasets
 onnxruntime
 gdown
