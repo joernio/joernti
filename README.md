@@ -3,7 +3,7 @@
 This is the backend python package for the Type Inference plugin for the Joern code analysis platform (JoernTI).
 This backend provides the interface to query and recover unknown types from objects using neural type inference.  
 
-You can find our main repository, including documentation how to use this type inference backend together with Joern, under https://github.com/joernio/joernti-codetidal5.
+You can find our main repository, including d ocumentation on how to use this type inference backend together with Joern, under https://github.com/joernio/joernti-codetidal5.
 
 ## Getting Started
 
@@ -15,71 +15,41 @@ pip install -r requirements.txt # Install dependencies
 pip install .                   # Install JoernTI
 ```
 
-From this point onwards, you can use JoernTI as an executable by calling `joernti` on the command
-line. This executable gives you access to a way to leverage the type inference models from the CLI.
+From this point onwards, you can use JoernTI as an executable by calling `joernti` on the command line. 
+This executable gives you access to a way to leverage the type inference models from the CLI.
 
+A full proof of concept for the integration with Joern can be found [here](https://github.com/joernio/joernti-codetidal5).
 
-
-Place your model weights (cf. [our CodeTIDAL5 repository](https://github.com/joernio/joernti-codetidal5)) in `./checkpoints` before starting the application.
-
-
-## Models
-
-The default usage for LLM's uses the `llm` command. Given extracted usage slices, the model pipeline transforms these 
-into numerical representations of word tokens which a multi-head transformer model then tries to learn and infer the 
-data type.
-
-The named models below simply wrap this command with the supported target language to infer types on and the model's 
-weights at some checkpoint.
-
-### CodeTIDAL5
-
-`CodeTIDAL5`: Given extracted usage slices from JavaScript code, the CodeT5-based encode-decoder model infers types for
-the target objects.
-
-**Usage**:
-The model can either be used for one-shot inference with
-```
-joernti codetidal5 --input-slice /path/to/extraced_slice
-```
-or as a continuously running endpoint with
-```
+### Usage
+The model can either be used as a queryable, continuously running endpoint with
+```shell
 joernti codetidal5 --run-as-server
 ```
-In that case, connect to the server on port 1337 (default) via a TCP socket and send the raw json-encoded slice. The response will be of the following format:
+
+In that case, connect to the server on port 1337 (default) via a TCP socket and send the raw JSON-encoded slice. The response will be of the following format:
 ```json
 [{"target_identifier": "id", "type": "DataSet[]", "confidence": 0.6373817920684814}]`
 ```
 
-## Structure
+### Model: CodeTIDAL5
 
-The following describes the structure of the project other than the models.
+If no local model (checkpoint) is specified, a remote snapshot of the
+CodeTIDAL5 model will be fetched from our [Hugging Face repository](https://huggingface.co/joernio/codetidal5).
 
-### `joernti`
-
-The main Python package that holds the models and helper functions.
-
-- `domain`: Where classes that are commonly used by each model belong.
-- `util`: Some helper functions for manipulating data.
-
-### `data`
-
-Holds the datasets/trained models/corpora for the models to access.
+Given extracted usage slices from JavaScript code and the raw source code of the corresponding scope, e.g., function, the CodeT5-based encode-decoder model infers types for the target objects.
 
 ## Obtaining Slices with Joern
 
-This project operates on input obtained via Joern. Here is a short tutorial on 
-obtaining these "usage slices":
+This project uses slices obtained via Joern as part of the type inference request. 
+Here is a short example on obtaining these _usage slices_:
 
-```
+```shell
 joern-slice usages /path/to/project -o /path/to/slice/output/slices.json
 ```
 
-The usage slice will be at `/path/to/slice/output/slices.json` which is what the models in this
-directory both train and classify.
-
 ## Citation
 If you use JoernTI / CodeTIDAL5 in your research or wish to refer to the baseline results, we kindly ask you to cite us:
+
 ```bibtex
 @inproceedings{joernti2023,
   title={Learning Type Inference for Enhanced Dataflow Analysis},

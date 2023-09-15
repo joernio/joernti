@@ -31,7 +31,7 @@ class LLMTypeInferenceModel(TypeInferenceModel):
         if checkpoint_path is not None:
             self.checkpoint_path = checkpoint_path
         else:
-            self.checkpoint_path = "./data/model_checkpoints/codetidal5"
+            self.checkpoint_path = "joernio/codetidal5"
 
         self.confidence_threshold = confidence_threshold
         self.language = language

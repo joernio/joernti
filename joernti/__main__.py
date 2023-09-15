@@ -24,9 +24,9 @@ def llm(
 
 
 @app.command(name="codetidal5",
-             help="T5-based LLM model for JavaScript type inference. Requires the `codetidal5` model checkpoint.")
+             help="CodeT5-based LLM model for JavaScript type inference. Will download `codetidal5` model checkpoint if no local model is specified.")
 def codeTidal5(
-        checkpoint: Optional[str] = typer.Argument("./data/model_checkpoints/codetidal5",
+        checkpoint: Optional[str] = typer.Argument("joernio/codetidal5",
                                                    help="The path to the checkpoint to use."),
         input_slice: Optional[str] = typer.Option(None, help="The input usage slice to infer types from."),
         run_as_server: Optional[bool] = typer.Option(False, help="Run the model as a server."),
