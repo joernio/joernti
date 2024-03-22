@@ -112,8 +112,8 @@ class LLMTypeInferenceModel(TypeInferenceModel):
         # extract predictions
         if "No types inferred." not in answer:
             for pred in answer.split('\n')[:-1]:
-                var_id, type_pred = pred.split(" ")[:-1]
-                type_name = type_pred.strip()
+                var_id, type_pred = pred.split(" ", 1)
+                type_name = type_pred.replace(" ", "")
                 var_id = int(var_id.split("id_")[-1].strip(">"))
 
                 if var_id < len(identifiers):
